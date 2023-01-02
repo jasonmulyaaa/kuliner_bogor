@@ -187,6 +187,12 @@
                                 <p>Config</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pagetitle.index') }}" class="nav-link @yield('pagetitle')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Page Title</p>
+                            </a>
+                        </li>
                         @endif
 
                         @endif
