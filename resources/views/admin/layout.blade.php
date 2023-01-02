@@ -111,6 +111,30 @@
                         <li class="nav-header">
                             Admin
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('banner.index') }}" class="nav-link @yield('banner')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Banner</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('alur.index') }}" class="nav-link @yield('alur')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Alur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('testimonial.index') }}" class="nav-link @yield('testimonial')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Testimonial</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('partner.index') }}" class="nav-link @yield('partner')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Partner</p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="{{ route('title.index') }}" class="nav-link @yield('page_title')">
                                 <i class="fa-solid fa-a"></i>
@@ -151,6 +175,7 @@
                                 <p>Contact</p>
                             </a>
                         </li> --}}
+
                         <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link @yield('user')">
                                 <i class="fa-solid fa-user"></i>
@@ -161,6 +186,12 @@
                             <a href="{{ route('config.index') }}" class="nav-link @yield('config')">
                                 <i class="fa-solid fa-cog"></i>
                                 <p>Config</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pagetitle.index') }}" class="nav-link @yield('pagetitle')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Page Title</p>
                             </a>
                         </li>
                         @endif

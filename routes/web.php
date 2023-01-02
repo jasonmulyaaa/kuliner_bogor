@@ -8,9 +8,14 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\AlurController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PageTitleController;
 use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\PanelController;
@@ -38,6 +43,11 @@ Route::resource('blog', BlogController::class)->middleware('auth');
 
 Route::resource('user', UserController::class)->middleware('superadmin');
 Route::resource('config', ConfigController::class)->middleware('superadmin');
+Route::resource('banner', BannerController::class)->middleware('superadmin');
+Route::resource('alur', AlurController::class)->middleware('superadmin');
+Route::resource('testimonial', TestimonialController::class)->middleware('superadmin');
+Route::resource('partner', PartnerController::class)->middleware('superadmin');
+Route::resource('pagetitle', PageTitleController::class)->middleware('superadmin');
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel')->middleware('guest');
 Route::post('/panel', [PanelController::class, 'authentication'])->name('authentication');
