@@ -1,57 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | BackEnd</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <title>Login</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
 </head>
-
-<body>
-<div class="row mt-5">
-    <div class="col-2"></div>
-    <div class="content m-5 p-5 col-7">
-        <div class="card text-center">
-            <div class="card-header">
-              Login
-            </div>
-            @if ($message = Session::get('success'))
-              <div class="alert alert-success mt-2">
-                <p>{{ $message }}</p>
-              </div>
-            @endif
-            @if (session()->has('loginError'))
-              <div class="alert alert-danger mt-2">
-                <p>{{ session('loginError') }}</p>
-              </div>
-            @endif
-            <form action="{{ route('authentication') }}" method="post">
-              @csrf
-              <div class="card-body mt-5 ms-5 me-5 md-3">
-                  <div class="form-floating mb-3">
-                      <input type="text" class="form-control @error('username') is-invalid @enderror" id="floatingInput" name="username" placeholder="name@example.com" value="{{ old('username') }}">
-                      <label for="floatingInput">Username</label>
-                    </div>
-                    <div class="form-floating">
-                      <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" name="password" placeholder="Password">
-                      <label for="floatingPassword">Password</label>
-                    </div>
-                    <button class="btn btn-primary mt-4" type="submit">Login</button>
-              </div>
-            </form>
-          </div>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="#" class="h1"><b>Back</b>End</a>
     </div>
-    <div class="col-2"></div>
-</div>
+    <div class="card-body">
+      <p class="login-box-msg">Login untuk Melanjutkan</p>
+	  	@if ($message = Session::get('success'))
+			<div class="alert alert-success mt-2">
+			<p>{{ $message }}</p>
+			</div>
+		@endif
+		@if (session()->has('loginError'))
+			<div class="alert alert-danger mt-2">
+			<p>{{ session('loginError') }}</p>
+			</div>
+		@endif
 
+      <form action="{{ route('authentication') }}" method="post">
+          @csrf
+          <div class="input-group mb-3">
+          <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" value="{{ old('password') }}">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{{ asset('assets/admin/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('assets/admin/dist/js/adminlte.min.js') }}"></script>
 </body>
 </html>

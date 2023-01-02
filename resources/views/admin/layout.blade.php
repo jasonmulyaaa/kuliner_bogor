@@ -111,21 +111,21 @@
                         <li class="nav-header">
                             Admin
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{ route('title.index') }}" class="nav-link @yield('page_title')">
+                        <li class="nav-item">
+                            <a href="{{ route('counter.index') }}" class="nav-link @yield('counter')">
                                 <i class="fa-solid fa-a"></i>
-                                <p>Page Title</p>
+                                <p>Counter</p>
                             </a>
-                        </li> --}}
+                        </li>
                         @endif
 
                         <li class="nav-header">
                             Operator
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('product.index') }}" class="nav-link @yield('product')">
+                            <a href="{{ route('resto.index') }}" class="nav-link @yield('product')">
                                 <i class="fa-solid fa-bowl-food"></i>
-                                <p>Makanan</p>
+                                <p>Resto</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -145,12 +145,12 @@
                         <li class="nav-header">
                             Settings
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('contact.index') }}" class="nav-link @yield('contact')">
                                 <i class="fa-solid fa-phone"></i>
                                 <p>Contact</p>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('user.index') }}" class="nav-link @yield('user')">
                                 <i class="fa-solid fa-user"></i>

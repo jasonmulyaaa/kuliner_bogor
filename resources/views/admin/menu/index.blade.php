@@ -1,18 +1,21 @@
 @extends('admin.layout')
 @php
-    use App\Models\Category;
+    use App\Models\Product;
 @endphp
 
 @section('product')
 active
 @endsection
 @section('title')
-Resto
+Menu
 @endsection
 
 @section('content')
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="btn btn-danger" style="margin-right: 5px;" href="{{ route('resto.index') }}"> Back</a>
+    </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
             role="tab" aria-controls="home" aria-selected="true">Table</button>
@@ -45,14 +48,13 @@ Resto
                                         <tr>
                                             <th><input type="checkbox" id="chkCheckAll" /></th>
                                             <th>Image</th>
-                                            <th>Nama Tempat Makan</th>
-                                            <th>Kecamatan</th>
-                                            <th>Other</th>
+                                            <th>Menu</th>
+                                            <th>Harga</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($product as $p)
+                                        @foreach ($menu as $p)
                                         <tr>
                                             <td><input type="checkbox" name="ids" class="checkBoxClass"
                                                     value="{{ $p->id }}" /></td>
@@ -63,18 +65,13 @@ Resto
                                                 </div>
                                             </td>
                                             <td>{{ $p->title }}</td>
-                                            @php
-                                                $cb = Category::where('id', $p->category)->first();
-                                            @endphp
-                                            <td>{{ $cb->category }}</td>
-
-                                            <td><a class="btn btn-success" href="{{ route('menu.show',$p->id) }}">Tambah Menu</a></td>
+                                            <td>Rp{{ number_format($p->harga, 0, '', '.') }}</td>
 
                                             <td>
-                                                <form action="{{ route('resto.destroy',$p->id) }}" method="POST">
+                                                <form action="{{ route('menu.destroy',$p->id) }}" method="POST">
 
                                                     <a class="btn btn-primary"
-                                                        href="{{ route('resto.edit',$p->id) }}">Edit</a>
+                                                        href="{{ route('menu.edit',$p->id) }}">Edit</a>
 
                                                     @csrf
                                                     @method('DELETE')
@@ -91,9 +88,8 @@ Resto
                                         <tr>
                                             <th></th>
                                             <th>Image</th>
-                                            <th>Nama Tempat Makan</th>
-                                            <th>Kecamatan</th>
-                                            <th>Other</th>
+                                            <th>Menu</th>
+                                            <th>Harga</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -123,7 +119,7 @@ Resto
                         <div class="card">
                             <div class="card-header">
                                 <div class="pull-right">
-                                    {{-- <a class="btn btn-danger" href="{{ route('resto.index') }}"> Back</a> --}}
+                                    {{-- <a class="btn btn-danger" href="{{ route('menu.index') }}"> Back</a> --}}
                                 </div>
                                 @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -140,11 +136,12 @@ Resto
                             <div class="card-body">
 
 
-                                <form action="{{ route('resto.store') }}" method="POST"
+                                <form action="{{ route('menu.store') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
+                                        <input type="hidden" name="resto_id" value="{{ $resto }}">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Image</strong>
@@ -162,10 +159,22 @@ Resto
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong>Nama Tempat Makan</strong>
+                                                <strong>Nama Menu</strong>
                                                 <input type="text" name="title" class="form-control" @error('title')
-                                                    is-invalid @enderror placeholder="Nama Tempat Makan" value="{{ old('title') }}">
+                                                    is-invalid @enderror placeholder="Nama Menu" value="{{ old('title') }}">
                                                 @error('title')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <strong>Harga</strong>
+                                                <input type="number" name="harga" class="form-control" @error('harga')
+                                                    is-invalid @enderror placeholder="Harga" value="{{ old('harga') }}">
+                                                @error('harga')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -182,40 +191,6 @@ Resto
                                                 </script>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                                            <div class="form-group">
-                                                <strong>Kecamatan</strong>
-                                                <select class="form-control" name="category">
-                                                    @foreach($category as $c)
-                                                        <option value="{{$c->id}}">{{$c->category}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                          </div>
-                                          <div class="col-xs-12 col-sm-12 col-md-12">
-                                              <div class="form-group">
-                                                  <strong>Alamat Tempat Makan</strong>
-                                                  <input type="text" name="alamat" class="form-control" @error('alamat')
-                                                      is-invalid @enderror placeholder="Alamat Tempat Makan" value="{{ old('alamat') }}">
-                                                  @error('alamat')
-                                                  <div class="invalid-feedback">
-                                                      {{ $message }}
-                                                  </div>
-                                                  @enderror
-                                              </div>
-                                          </div>
-                                          <div class="col-xs-12 col-sm-12 col-md-12">
-                                              <div class="form-group">
-                                                  <strong>Jam Operasi Tempat Makan</strong>
-                                                  <input type="text" name="jam" class="form-control" @error('jam')
-                                                      is-invalid @enderror placeholder="Jam Operasi Tempat Makan" value="{{ old('jam') }}">
-                                                  @error('jam')
-                                                  <div class="invalid-feedback">
-                                                      {{ $message }}
-                                                  </div>
-                                                  @enderror
-                                              </div>
-                                          </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
