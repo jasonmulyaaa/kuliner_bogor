@@ -112,6 +112,30 @@
                             Admin
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('banner.index') }}" class="nav-link @yield('banner')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Banner</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('alur.index') }}" class="nav-link @yield('alur')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Alur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('testimonial.index') }}" class="nav-link @yield('testimonial')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Testimonial</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('partner.index') }}" class="nav-link @yield('partner')">
+                                <i class="fa-solid fa-cog"></i>
+                                <p>Partner</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('counter.index') }}" class="nav-link @yield('counter')">
                                 <i class="fa-solid fa-a"></i>
                                 <p>Counter</p>

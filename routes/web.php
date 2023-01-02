@@ -8,11 +8,16 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\AlurController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\PageTitleController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\MenuController;
 
@@ -41,6 +46,11 @@ Route::resource('blog', BlogController::class)->middleware('auth');
 Route::resource('menu', MenuController::class)->middleware('auth');
 
 Route::resource('counter', CounterController::class)->middleware('admin');
+Route::resource('banner', BannerController::class)->middleware('admin');
+Route::resource('alur', AlurController::class)->middleware('admin');
+Route::resource('testimonial', TestimonialController::class)->middleware('admin');
+Route::resource('partner', PartnerController::class)->middleware('admin');
+Route::resource('pagetitle', PageTitleController::class)->middleware('admin');
 
 Route::resource('user', UserController::class)->middleware('superadmin');
 Route::resource('config', ConfigController::class)->middleware('superadmin');
