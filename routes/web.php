@@ -13,10 +13,13 @@ use App\Http\Controllers\AlurController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\PageTitleController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\CounterController;
+use App\Http\Controllers\MenuController;
 
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\BlogUserController;
@@ -43,17 +46,21 @@ Route::resource('/', HomeController::class);
 Route::resource('dashboard', DashboardController::class)->middleware('auth');
 Route::resource('setting', SettingController::class)->middleware('auth');
 
-Route::resource('product', ProductController::class)->middleware('auth');
+Route::resource('resto', ProductController::class)->middleware('auth');
 Route::resource('category', CategoryController::class)->middleware('auth');
 Route::resource('blog', BlogController::class)->middleware('auth');
+Route::resource('menu', MenuController::class)->middleware('auth');
+
+Route::resource('counter', CounterController::class)->middleware('admin');
+Route::resource('banner', BannerController::class)->middleware('admin');
+Route::resource('alur', AlurController::class)->middleware('admin');
+Route::resource('testimonial', TestimonialController::class)->middleware('admin');
+Route::resource('partner', PartnerController::class)->middleware('admin');
+Route::resource('pagetitle', PageTitleController::class)->middleware('admin');
 
 Route::resource('user', UserController::class)->middleware('superadmin');
 Route::resource('config', ConfigController::class)->middleware('superadmin');
-Route::resource('banner', BannerController::class)->middleware('superadmin');
-Route::resource('alur', AlurController::class)->middleware('superadmin');
-Route::resource('testimonial', TestimonialController::class)->middleware('superadmin');
-Route::resource('partner', PartnerController::class)->middleware('superadmin');
-Route::resource('pagetitle', PageTitleController::class)->middleware('superadmin');
+Route::resource('contact', ContactController::class)->middleware('superadmin');
 
 Route::resource('/', HomePageController::class);
 Route::resource('blogs', BlogUserController::class);

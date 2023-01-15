@@ -4,7 +4,7 @@
 active
 @endsection
 @section('title')
-Resto
+Menu
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@ Resto
                 <div class="card">
                     <div class="card-header">
                         <div class="pull-right">
-                            <a class="btn btn-danger" href="{{ route('resto.index') }}"> Back</a>
+                            <a class="btn btn-danger" href="{{ route('menu.show', $menu->resto_id) }}"> Back</a>
                         </div>
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -34,18 +34,19 @@ Resto
                     <div class="card-body">
 
 
-                        <form action="{{ route('resto.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('menu.update',$menu->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @method('PUT')
 
                             <div class="row">
+                                <input type="hidden" name="resto_id" value="{{ $menu->resto_id }}">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Image</strong>
-                                        <input type="hidden" name="oldImage" value="{{ $product->image }}">
-                                        @if ($product->image)
-                                        <img src="{{ asset('storage/' . $product->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        <input type="hidden" name="oldImage" value="{{ $menu->image }}">
+                                        @if ($menu->image)
+                                        <img src="{{ asset('storage/' . $menu->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                                         @else
                                         <img class="img-preview img-fluid mb-3">
                                         @endif
@@ -61,8 +62,8 @@ Resto
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Nama Tempat Makan</strong>
-                                        <input type="text" name="title" class="form-control" @error('title') is-invalid @enderror placeholder="Nama Tempat Makan" value="{{$product->title}}">
+                                        <strong>Nama Menu</strong>
+                                        <input type="text" name="title" class="form-control" @error('title') is-invalid @enderror placeholder="Nama Menu" value="{{$menu->title}}">
                                         @error('title')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -72,9 +73,10 @@ Resto
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>Quotes</strong>
-                                        <input type="text" name="quotes" class="form-control" @error('quotes') is-invalid @enderror placeholder="quotes" value="{{$product->quotes}}">
-                                        @error('quotes')
+                                        <strong>Harga</strong>
+                                        <input type="number" name="harga" class="form-control" @error('harga')
+                                            is-invalid @enderror placeholder="Harga" value="{{ $menu->harga }}">
+                                        @error('harga')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -84,59 +86,10 @@ Resto
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Description</strong>
-                                        <textarea name="desc" id="contents" cols="30" rows="10">{{ $product->desc }}</textarea>
+                                        <textarea name="desc" id="contents" cols="30" rows="10">{{ $menu->desc }}</textarea>
                                         <script>
                                             CKEDITOR.replace('contents');
                                         </script>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Short Description</strong>
-                                        <textarea name="short_desc" id="contents1" cols="30" rows="10">{{ $product->short_desc }}</textarea>
-                                        <script>
-                                            CKEDITOR.replace('contents1');
-                                        </script>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Benefit</strong> <br>
-                                        <textarea name="benefit" cols="30" rows="5" style="width: 100%;">{{ $product->benefit }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 mt-3">
-                                  <div class="form-group">
-                                      <strong>Kecamatan</strong>
-                                      <select class="form-control" name="category">
-                                          @foreach($category as $c)
-                                              <option value="{{$c->id}}" @if($product->category == $c->id)selected @endif>{{$c->category}}</option>
-                                          @endforeach
-                                      </select>
-                                  </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Alamat Tempat Makan</strong>
-                                        <input type="text" name="alamat" class="form-control" @error('alamat')
-                                            is-invalid @enderror placeholder="Alamat Tempat Makan" value="{{ $product->alamat }}">
-                                        @error('alamat')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <strong>Jam Operasi Tempat Makan</strong>
-                                        <input type="text" name="jam" class="form-control" @error('jam')
-                                            is-invalid @enderror placeholder="Jam Operasi Tempat Makan" value="{{ $product->jam }}">
-                                        @error('jam')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">

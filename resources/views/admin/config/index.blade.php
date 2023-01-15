@@ -109,6 +109,12 @@ Config
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
+                                        <strong>Footer Description</strong> <br>
+                                        <textarea name="footer_desc" id="contents" cols="30" rows="5" style="width: 100%;">{{ $config->footer_desc }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
                                         <strong>Meta Title</strong> <br>
                                         <textarea name="meta_title" id="contents" cols="30" rows="5" style="width: 100%;">{{ $config->meta_title }}</textarea>
                                     </div>

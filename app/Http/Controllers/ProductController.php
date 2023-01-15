@@ -41,10 +41,7 @@ class ProductController extends Controller
             'short_desc' => 'required',
             'benefit' => 'required',
             'category' => 'required',
-            'name' => 'required',
             'alamat' => 'required',
-            'rating' => 'required',
-            'harga' => 'required',
             'jam' => 'required',
         ]);
 
@@ -58,7 +55,7 @@ class ProductController extends Controller
 
         Product::create($validated);
 
-        return redirect()->route('product.index')
+        return redirect()->route('resto.index')
             ->with('success', 'Add Success!');
     }
 
@@ -88,10 +85,7 @@ class ProductController extends Controller
             'short_desc' => 'required',
             'benefit' => 'required',
             'category' => 'required',
-            'name' => 'required',
             'alamat' => 'required',
-            'rating' => 'required',
-            'harga' => 'required',
             'jam' => 'required',
         ];
 
@@ -110,7 +104,7 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('product.index')
+        return redirect()->route('resto.index')
             ->with('success', 'Update Success!');
     }
 
@@ -122,7 +116,7 @@ class ProductController extends Controller
 
         $product->delete($product->id);
 
-        return redirect()->route('product.index')
+        return redirect()->route('resto.index')
             ->with('success', 'Delete Success!');
     }
 
