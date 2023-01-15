@@ -36,7 +36,10 @@ class ProductController extends Controller
         $validated = $request->validate([
             'image' => 'image|file|required',
             'title' => 'required',
+            'quotes' => 'required',
             'desc' => 'required',
+            'short_desc' => 'required',
+            'benefit' => 'required',
             'category' => 'required',
             'alamat' => 'required',
             'jam' => 'required',
@@ -77,7 +80,10 @@ class ProductController extends Controller
         $rules = [
             'image' => 'image|file',
             'title' => 'required',
+            'quotes' => 'required',
             'desc' => 'required',
+            'short_desc' => 'required',
+            'benefit' => 'required',
             'category' => 'required',
             'alamat' => 'required',
             'jam' => 'required',

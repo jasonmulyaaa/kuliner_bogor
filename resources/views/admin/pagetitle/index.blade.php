@@ -257,6 +257,39 @@ Page Title
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
+                                        <strong>Alamat Contact</strong>
+                                        <input type="text" name="alamat_contact" class="form-control" @error('alamat_contact') is-invalid @enderror placeholder="Alamat Contact" value="{{$pagetitle->alamat_contact}}">
+                                        @error('alamat_contact')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Email Contact</strong>
+                                        <input type="text" name="email_contact" class="form-control" @error('email_contact') is-invalid @enderror placeholder="Email Contact" value="{{$pagetitle->email_contact}}">
+                                        @error('email_contact')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Telp Contact</strong>
+                                        <input type="text" name="telp_contact" class="form-control" @error('telp_contact') is-invalid @enderror placeholder="Telp Contact" value="{{$pagetitle->telp_contact}}">
+                                        @error('telp_contact')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
                                         <strong>Gambar Contact</strong>
                                         <input type="hidden" name="oldContact" value="{{ $pagetitle->gambar_contact }}">
                                         @if ($pagetitle->gambar_contact)

@@ -72,11 +72,37 @@ Resto
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
+                                        <strong>Quotes</strong>
+                                        <input type="text" name="quotes" class="form-control" @error('quotes') is-invalid @enderror placeholder="quotes" value="{{$product->quotes}}">
+                                        @error('quotes')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
                                         <strong>Description</strong>
                                         <textarea name="desc" id="contents" cols="30" rows="10">{{ $product->desc }}</textarea>
                                         <script>
                                             CKEDITOR.replace('contents');
                                         </script>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Short Description</strong>
+                                        <textarea name="short_desc" id="contents1" cols="30" rows="10">{{ $product->short_desc }}</textarea>
+                                        <script>
+                                            CKEDITOR.replace('contents1');
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Benefit</strong> <br>
+                                        <textarea name="benefit" cols="30" rows="5" style="width: 100%;">{{ $product->benefit }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 mt-3">

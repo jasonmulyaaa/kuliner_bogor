@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PageTitle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PageTitleController extends Controller
 {
@@ -78,7 +79,7 @@ class PageTitleController extends Controller
             'deskripsi_resto' => 'required',
             'gambar_resto' => 'image|file|',
             'judul_counter' => 'required',
-            'gambar_testimonial' => 'imagee|file|',
+            'gambar_testimonial' => 'image|file|',
             'judul_testimonial' => 'required',
             'judul_partner' => 'required',
             'judul_subscribe' => 'required',
@@ -88,6 +89,9 @@ class PageTitleController extends Controller
             'gambar_blog' => 'image|file',
             'judul_contact' => 'required',
             'deskripsi_contact' => 'required',
+            'alamat_contact' => 'required',
+            'email_contact' => 'required',
+            'telp_contact' => 'required',
             'gambar_contact' => 'image|file',
             'page_blog' => 'required',
             'page_resto' => 'required',
@@ -95,6 +99,41 @@ class PageTitleController extends Controller
         ];
 
         $validated = $request->validate($rules);
+
+        if ($request->file('gambar_resto')) {
+            if ($request->oldResto) {
+                Storage::delete($request->oldResto);
+            }
+            $validated['gambar_resto'] = $request->file('gambar_resto')->store('post-images/config');
+        };
+
+        if ($request->file('gambar_testimonial')) {
+            if ($request->oldTestimonial) {
+                Storage::delete($request->oldTestimonial);
+            }
+            $validated['gambar_testimonial'] = $request->file('gambar_testimonial')->store('post-images/config');
+        };
+
+        if ($request->file('gambar_subscribe')) {
+            if ($request->oldSubscribe) {
+                Storage::delete($request->oldSubscribe);
+            }
+            $validated['gambar_subscribe'] = $request->file('gambar_subscribe')->store('post-images/config');
+        };
+
+        if ($request->file('gambar_blog')) {
+            if ($request->oldBlog) {
+                Storage::delete($request->oldBlog);
+            }
+            $validated['gambar_blog'] = $request->file('gambar_blog')->store('post-images/config');
+        };
+
+        if ($request->file('gambar_contact')) {
+            if ($request->oldContact) {
+                Storage::delete($request->oldContact);
+            }
+            $validated['gambar_contact'] = $request->file('gambar_contact')->store('post-images/config');
+        };
 
         $pagetitle->update($validated);
 
