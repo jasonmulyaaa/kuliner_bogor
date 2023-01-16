@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-// use App\Models\Konfigurasi;
+use App\Models\Config;
 use App\Models\Blog;
 use App\Models\PageTitle;
 use Illuminate\Http\Request;
@@ -18,14 +18,14 @@ class BlogUserController extends Controller
     public function index()
     {
         $blogs = Blog::latest()->paginate(9);
-        // $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Config::first();
         // $alur = Alur::all();
         // $testimonial = Testimonial::all();
         // $partner = Partner::all();
         $pagetitle = PageTitle::first();
         $page = $pagetitle->page_blog;
 
-        return view('user.blogs.index', compact('blogs', 'pagetitle', 'page'));
+        return view('user.blogs.index', compact('blogs', 'pagetitle', 'page', 'konfigurasi'));
     }
 
     /**
@@ -60,11 +60,11 @@ class BlogUserController extends Controller
         $blog = Blog::where('slug', $slug)->first();
         $blog->view += 1;
         $blog->update();
-        // $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Konfigurasi::first();
         $pagetitle = PageTitle::first();
         $page = $blog->title;
 
-        return view('user.blogs.show', compact('blog', 'pagetitle', 'page'));
+        return view('user.blogs.show', compact('blog', 'pagetitle', 'page', 'konfigurasi'));
     }
 
     /**

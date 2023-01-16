@@ -17,13 +17,18 @@ use App\Models\Category;
                 <p>{!! $pagetitle->deskripsi_resto !!}</p>
                 <div class="restaurant">
                   <div class="nice-select-one">
-                    <select class="nice-select Advice">
-                      <option>Choose a Restaurant</option>
-                      <option>Choose a Restaurant 1</option>
-                      <option>Choose a Restaurant 2</option>
-                      <option>Choose a Restaurant 3</option>
-                      <option>Choose a Restaurant 4</option>
-                  </select>
+                    <form action="{{ url('restoran') }}" autocomplete="off" method="get">
+                      <input type="text" placeholder="Search your keyword..." name="search" style="color: #CFCFCF;
+                      border: none;
+                      box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+                      -webkit-box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+                      -moz-box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+                      padding: 20px;
+                      height: 55px;
+                      width: 90%;
+                      font-size: 18px;">
+                      <i class="fa-solid fa-magnifying-glass"></i>          
+                    </form>
                   </div>
                 </div>
               </div>
@@ -46,10 +51,6 @@ use App\Models\Category;
           <h4>Restaurant<br>of the Month
           <span class="chevron chevron--left"></span>
         </h4>
-          <div class="banner-wilmington">
-            <img alt="logo" src="https://via.placeholder.com/40x40">
-            <h6>The Wilmington</h6>
-          </div>
         </div>
 
         <div class="row">
@@ -79,7 +80,7 @@ use App\Models\Category;
           <div class="logos-card restaurant-page ">
             <img alt="{!! $product->title !!}" src="{{ asset('storage/'. $product->image) }}" style="width: 100px; height: 100px; object-fit: cover;" title="{!! $product->title !!}">
               <div class="cafa">
-                <h4><a href="#">{!! $product->title !!}</a></h4>
+                <h4><a href="{{ route('restoran.show', $product->slug) }}">{!! $product->title !!}</a></h4>
                 <div>
                     @for ($o = 1; $o <= $product->rating; $o++)
                   <i class="fa-solid fa-star"></i>

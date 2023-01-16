@@ -12,14 +12,25 @@ use App\Models\Category;
             <h1>{!! $banner->judul !!}</h1>
             <p>{!! $banner->deskripsi !!}</p>
             <div class="nice-select-one">
-              <select class="nice-select Advice">
+              {{-- <select class="nice-select Advice">
                 <option>Choose a Restaurant</option>
                 <option>Choose a Restaurant 1</option>
                 <option>Choose a Restaurant 2</option>
                 <option>Choose a Restaurant 3</option>
                 <option>Choose a Restaurant 4</option>
-            </select>
-            <a href="#" class="button button-2">Order Now</a>
+            </select> --}}
+            <form action="{{ url('restoran') }}" autocomplete="off" method="get">
+              <input type="text" placeholder="Search your keyword..." name="search" style="color: #CFCFCF;
+              border: none;
+              box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+              -webkit-box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+              -moz-box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+              padding: 20px;
+              height: 55px;
+              width: 90%;
+              font-size: 18px;">
+              <i class="fa-solid fa-magnifying-glass"></i>          
+            </form>
             </div>
           </div>
         </div>
@@ -121,28 +132,20 @@ use App\Models\Category;
               <h2>{!! $pagetitle->judul_counter !!}</h2>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-12" data-aos="flip-up"  data-aos-delay="300" data-aos-duration="400">
+          @php
+              $q = 300;
+              $w = 400;
+          @endphp
+          @foreach ($counter as $counter)
+              
+          <div class="col-lg-3 col-md-6 col-sm-12" data-aos="flip-up"  data-aos-delay="{!! $q++ !!}" data-aos-duration="{!! $w++ !!}">
             <div class="count-time">
-                <h2 class="timer count-title count-number" data-to="976" data-speed="2000">976</h2>
-                  <p>Satisfied<br>
-                  Customer</p>
+                <h2 class="timer count-title count-number" data-to="{!! $counter->number !!}" data-speed="2000">{!! $counter->number !!}</h2>
+                  <p>{!! $counter->title !!}<br></p>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12" data-aos="flip-up"  data-aos-delay="400" data-aos-duration="500">
-            <div class="count-time">
-			<h2 class="timer count-title count-number" data-to="12" data-speed="2000">12</h2>
-                  <p>Best<br>
-                      Restaurants</p>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12" data-aos="flip-up"  data-aos-delay="500" data-aos-duration="600">
-            <div class="count-time sp">
-                <h2 class="timer count-title count-number" data-to="1" data-speed="2000">1</h2>
-                <span>k+</span>
-                  <p>Food<br>
-                      Delivered</p>
-            </div>
-        </div>
+        @endforeach
+
       </div>
     </div>
   </section>

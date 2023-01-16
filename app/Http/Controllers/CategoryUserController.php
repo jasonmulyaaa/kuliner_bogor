@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-// use App\Models\Konfigurasi;
+use App\Models\Config;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\PageTitle;
@@ -54,10 +54,10 @@ class CategoryUserController extends Controller
         $product = Product::where('category', $categoryproduct->id)->get();
         $topproduct = Product::orderBy('view', 'DESC')->first();
         $categoryresto = Category::all();
-        // $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Config::first();
         $pagetitle = PageTitle::first();
         $page = $pagetitle->page_resto;
-        return view('user.restoran.categoryrestoran.index', compact('product', 'pagetitle', 'topproduct', 'categoryproduct', 'categoryresto', 'page'));
+        return view('user.restoran.categoryrestoran.index', compact('product', 'pagetitle', 'topproduct', 'categoryproduct', 'categoryresto', 'page', 'konfigurasi'));
     }
 
     /**

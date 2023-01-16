@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-// use App\Models\Konfigurasi;
+use App\Models\Config;
 use App\Models\Alur;
 use App\Models\Testimonial;
 use App\Models\Partner;
 use App\Models\Product;
+use App\Models\Counter;
 use App\Models\PageTitle;
 use Illuminate\Http\Request;
 
@@ -21,14 +22,15 @@ class HomePageController extends Controller
     public function index()
     {
         $banner = Banner::first();
-        // $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Config::first();
         $alur = Alur::all();
         $testimonial = Testimonial::all();
         $partner = Partner::all();
+        $counter = Counter::all();
         $product = Product::orderBy('view', 'DESC')->get();
         $pagetitle = PageTitle::first();
-        $page = 'Kuliner Bogor';
-        return view('welcome', compact('banner', 'alur', 'testimonial', 'partner', 'pagetitle', 'product', 'page'));
+        $page = $konfigurasi->title;
+        return view('welcome', compact('banner', 'alur', 'testimonial', 'partner', 'pagetitle', 'product', 'page', 'konfigurasi', 'counter'));
     }
 
     /**

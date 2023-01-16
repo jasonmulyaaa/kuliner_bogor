@@ -17,12 +17,18 @@ use App\Models\Category;
                 <p>{!! $pagetitle->deskripsi_resto !!}</p>
                 <div class="restaurant">
                   <div class="nice-select-one">
-                    <select class="nice-select Advice">
-                      <option>Choose a Restaurant</option>
-                      @foreach ($categoryresto as $categoryresto)
-                      <option><a href="{{ route('categoryrestoran.show', $categoryresto->slug) }}">{!! $categoryresto->category !!}</a></option>
-                      @endforeach
-                  </select>
+                    <form action="{{ url('restoran') }}" autocomplete="off" method="get">
+                      <input type="text" placeholder="Search your keyword..." name="search" style="color: #CFCFCF;
+                      border: none;
+                      box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+                      -webkit-box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+                      -moz-box-shadow: -1px 15px 26px -4px rgba(161,151,151,0.15);
+                      padding: 20px;
+                      height: 55px;
+                      width: 90%;
+                      font-size: 18px;">
+                      <i class="fa-solid fa-magnifying-glass"></i>          
+                    </form>
 
                   </div>
                 </div>

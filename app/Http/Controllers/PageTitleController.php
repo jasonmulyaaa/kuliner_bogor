@@ -89,6 +89,8 @@ class PageTitleController extends Controller
             'gambar_blog' => 'image|file',
             'judul_contact' => 'required',
             'deskripsi_contact' => 'required',
+            'judul_menu' => 'required',
+            'deskripsi_menu' => 'required',
             'alamat_contact' => 'required',
             'email_contact' => 'required',
             'telp_contact' => 'required',
@@ -96,6 +98,7 @@ class PageTitleController extends Controller
             'page_blog' => 'required',
             'page_resto' => 'required',
             'page_contact' => 'required',
+            'map' => 'required',
         ];
 
         $validated = $request->validate($rules);
