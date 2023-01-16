@@ -116,40 +116,48 @@
 	</section>
 	
 
-	{{-- <!-- Our Team Section -->
+	<!-- Our Team Section -->
 	<section class="our-team-section gap">
 		<div class="container">
 			<div class="hading" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="300">
-				<h2>Our team</h2>
-				<p>Enim lobortis scelerisque fermentum dui faucibus. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Magna ac placerat vestibulum lectus mauris.</p>
+				<h2>{!! $pagetitle->judul_menu !!}</h2>
+				<p>{!! $pagetitle->deskripsi_menu !!}</p>
 			</div>
 			<div class="row">
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="300">
-					<div class="our-team">
-						<img alt="team-img" src="https://via.placeholder.com/440x440">
-						<h4><a href="#">Kevin Adamson</a></h4>
-						<p>Pellentesque adipiscing commodo
-							elit at imperdiet dui.</p>
-					</div>
+				@foreach ($menu as $menu)
+					
+   	 		<div class="col-xl-4 col-lg-6" data-aos="flip-up" data-aos-delay="200" data-aos-duration="300">
+				<div class="dish">
+					<img alt="food-dish" src="{{ asset('storage/'. $menu->image) }}" style="width: 100%; height: 236px;">
+					{{-- width: 369px; height: 236px; --}}
+					<div class="dish-foods">
+						<h3>{!! $menu->title !!}</h3>
+								<div class="dish-icon">
+
+									<div class="dish-icon end">
+										<p>{!! substr($menu->desc, 0, 50) !!}...</p>
+										{{-- <i class="info fa-solid fa-circle-info"></i> --}}
+									</div>
+							 </div>
+							 <div class="price">
+								 <h2>Rp.{!! $menu->harga !!}</h2>
+							   </div>
+							   <button class="button-price info">Learn More<i class="fa-solid fa-circle-info"></i></button>
+						</div>
+						<div class="dish-info" style="display: none;">
+							<i class="info2 fa-solid fa-xmark"></i>
+							<h5>
+								{!! $menu->title !!}
+							</h5>
+							{!! $menu->desc !!}
+						</div>
 				</div>
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" data-aos="fade-up"  data-aos-delay="300" data-aos-duration="400">
-					<div class="our-team">
-						<img alt="team-img" src="https://via.placeholder.com/440x440">
-						<h4><a href="#">Roxie Gilbert</a></h4>
-						<p>Velit dignissim sodales ut eu sem integer vitae. Interdum varius sit amet mattis.</p>
-					</div>
-				</div>
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12" data-aos="fade-up"  data-aos-delay="400" data-aos-duration="500">
-					<div class="our-team">
-						<img alt="team-img" src="https://via.placeholder.com/440x440">
-						<h4><a href="#">Edgar Johnson</a></h4>
-						<p>At erat pellentesque adipiscing
-								commodo elit.</p>
-					</div>
-				</div>
+		   </div>
+				@endforeach
+
 			</div>
 		</div>
-	</section> --}}
+	</section>
 	
 	<!-- Our partners Section -->
 	<section class="service-shows gap" data-aos="fade-up"  data-aos-delay="200" data-aos-duration="300">

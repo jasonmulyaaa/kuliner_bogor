@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-// use App\Models\Konfigurasi;
+use App\Models\Config;
 use App\Models\PageTitle;
 use Illuminate\Http\Request;
 
@@ -17,9 +17,10 @@ class ContactUsController extends Controller
     public function index()
     {
         $pagetitle = PageTitle::first();
+        $konfigurasi = Config::first();
         $page = $pagetitle->page_contact;
 
-        return view('user.contactus.index', compact('pagetitle', 'page'));
+        return view('user.contactus.index', compact('pagetitle', 'page', 'konfigurasi'));
     
     }
 

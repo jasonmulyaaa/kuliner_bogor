@@ -255,6 +255,30 @@ Page Title
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Judul Menu</strong>
+                                        <input type="text" name="judul_menu" class="form-control" @error('judul_menu') is-invalid @enderror placeholder="Judul Menu" value="{{$pagetitle->judul_menu}}">
+                                        @error('judul_menu')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Deskripsi Menu</strong>
+                                        <input type="text" name="deskripsi_menu" class="form-control" @error('deskripsi_menu') is-invalid @enderror placeholder="Deskripsi Menu" value="{{$pagetitle->deskripsi_menu}}">
+                                        @error('deskripsi_menu')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Alamat Contact</strong>
@@ -337,6 +361,18 @@ Page Title
                                         <strong>Page Contact</strong>
                                         <input type="text" name="page_contact" class="form-control" @error('page_contact') is-invalid @enderror placeholder="Page Contact" value="{{$pagetitle->page_contact}}">
                                         @error('page_contact')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Embed Map</strong>
+                                        <input type="text" name="map" class="form-control" @error('map') is-invalid @enderror placeholder="Embed Map" value="{{$pagetitle->map}}">
+                                        @error('map')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>

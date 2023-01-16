@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-// use App\Models\Konfigurasi;
+use App\Models\Config;
 use App\Models\Product;
 use App\Models\Testimonial;
 use App\Models\Category;
+use App\Models\Menu;
 use App\Models\PageTitle;
 use Illuminate\Http\Request;
 
@@ -17,16 +18,23 @@ class ProductUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $product = Product::latest()->paginate(9);
+
+        $product = Product::when($request->search, function ($query) use ($request) {
+            $query->where('title', 'like', "%{$request->search}%");
+        })->orderBy('created_at', 'desc')->paginate(9);
+
+        $product->appends($request->only('search'));
+
         $categoryresto = Category::all();
         $topproduct = Product::orderBy('view', 'DESC')->first();
-        // $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Config::first();
         $pagetitle = PageTitle::first();
         $page = $pagetitle->page_resto;
 
-        return view('user.restoran.index', compact('product', 'pagetitle', 'topproduct', 'categoryresto', 'page'));
+        return view('user.restoran.index', compact('product', 'pagetitle', 'topproduct', 'categoryresto', 'page', 'konfigurasi'));
     }
 
     /**
@@ -61,14 +69,15 @@ class ProductUserController extends Controller
         $product = Product::where('slug', $slug)->first();
         // $categoryresto = Category::all();
         // $topproduct = Product::orderBy('view', 'DESC')->first();
-        // $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Config::first();
         $product->view += 1;
         $product->update();
         $pagetitle = PageTitle::first();
         $testimonial = Testimonial::all();
+        $menu = Menu::where('resto_id', $product->id)->get();
         $page = $product->title;
 
-        return view('user.restoran.show', compact('product', 'pagetitle', 'page', 'testimonial'));
+        return view('user.restoran.show', compact('product', 'pagetitle', 'page', 'testimonial', 'konfigurasi', 'menu'));
     }
 
     /**

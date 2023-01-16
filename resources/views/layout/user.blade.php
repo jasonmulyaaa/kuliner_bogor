@@ -4,7 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{!! $page !!}</title>
-  <link rel="icon" href="{{ asset('') }}assets/user/img/fav-icon.png">
+  <meta name="keywords" content="{!! $konfigurasi->keywords !!}">
+  <meta name="title" content="{!! $konfigurasi->title !!}" />
+  <meta name="search engines" content="{!! $konfigurasi->search_engine !!}">
+  <meta name="author" content="{!! $konfigurasi->author !!}">
+  <meta name="website" content="{!! $konfigurasi->website !!}">
+  <link rel="icon" href="{{ asset('storage/'. $konfigurasi->favicon) }}">
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<!-- owl carousel -->
@@ -66,17 +71,17 @@
 								</g>
 							</svg> -->
 							<div class="image">
-  										<a href="/"><img src="assets/user/img/coba4.png" alt="post image" class="img-responsive"></a>
+  										<a href="/"><img src="{{ asset('storage/'. $konfigurasi->nav_img) }}" alt="{!! $konfigurasi->title !!}" class="img-responsive" title="{!! $konfigurasi->title !!}" style="width: 100%; height: 150px; object-fit: cover;"></a>
   									</div>
 						</a>
-						<div class="extras bag">
+						{{-- <div class="extras bag">
 	           				<a href="javascript:void(0)" class="menu-btn">
 		                       <i class="fa-solid fa-bag-shopping"></i>
 		                   </a>
 		                   <div class="bar-menu">
 		                   	<i class="fa-solid fa-bars"></i>
 		                   </div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 				<div class="col-lg-7">
@@ -101,84 +106,10 @@
 					<div class="extras bag">
            <a href="javascript:void(0)" id="desktop-menu" class="menu-btn">
 
-							<i class="fa-solid fa-bag-shopping"></i></a>
-						 <a href="#" class="button button-2">Order Now</a>
+						 <a href="#" class="button button-2">Login</a>
 					</div>
 				</div>
-			 <div class="menu-wrap">
-               <div class="menu-inner ps ps--active-x ps--active-y">
-                 <span class="menu-cls-btn"><i class="cls-leftright"></i><i class="cls-rightleft"></i></span>
-                 <div class="checkout-order">
-						<div class="title-checkout">
-							<h2>My Orders</h2>
-						</div>
-						<div class="banner-wilmington">
-							<img alt="logo" src="https://via.placeholder.com/50x50">
-							<h6>Kennington Lane Cafe</h6>
-						</div>
-						<ul>
-							<li class="price-list">
-							<i class="closeButton fa-solid fa-xmark"></i>
-							<div class="counter-container">
-								<div class="counter-food">
-									<img alt="food" src="https://via.placeholder.com/100x67">
-									<h4>Pasta, kiwi and sauce chilli</h4>
-								</div>
-								<h3>$39</h3>
-							</div>
-							<div class="price">
-									<div>
-					              		<h2>$39</h2>
-					              		<span>Sum</span>
-					              	</div>
-					              		<div>
-						             	 	<div class="qty-input">
-												<button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-												<input class="product-qty" type="number" name="product-qty" min="0" value="1">
-												<button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-											</div>
-											<span>Quantity</span>
-										</div>
-										</div>
-							</li>
-							<li class="price-list">
-							<i class="closeButton fa-solid fa-xmark"></i>
-							<div class="counter-container">
-								<div class="counter-food">
-									<img alt="food" src="https://via.placeholder.com/100x67">
-									<h4>Rice with shrimps and kiwi</h4>
-								</div>
-								<h3>$49</h3>
-							</div>
-							<div class="price">
-									<div>
-					              		<h2>$49</h2>
-					              		<span>Sum</span>
-					              	</div>
-					              		<div>
-						             	 	<div class="qty-input">
-												<button class="qty-count qty-count--minus" data-action="minus" type="button">-</button>
-												<input class="product-qty" type="number" name="product-qty" min="0" value="1">
-												<button class="qty-count qty-count--add" data-action="add" type="button">+</button>
-											</div>
-											<span>Quantity</span>
-										</div>
-										</div>
-							</li>
-						</ul>
-						<div class="totel-price">
-							<span>Total order:</span>
-							<h5>$137</h5>
-						</div>
-						<div class="totel-price">
-							<span>To pay:</span>
-							<h2>$137</h2>
-						</div>
-						<button class="button-price">Checkout</button>
 
-					</div>
-            	 </div>
-         	 </div>
          	 <div class="mobile-nav hmburger-menu" id="mobile-nav" style="display:block;">
 
 
@@ -253,10 +184,11 @@
 								</g>
 							</svg> -->
 									<div class="image">
-  										<a href="/"><img src="asset/template/assets/img/coba1.png" alt="post image" class="img-responsive"></a>
+  										<a href="/"><img src="{{ asset('storage/'. $konfigurasi->footer_img) }}" alt="{!! $konfigurasi->title !!}" title="{!! $konfigurasi->title !!}" class="img-responsive" style="widtH: 50%; height: 150px; object-fit: cover;"></a>
   									</div>
 						</a>
-						{{-- <p>{!! $konfigurasi->deskripsi !!}</p> --}}
+						<h2>{!! $konfigurasi->title !!}</h2>
+						<p>{!! $konfigurasi->footer_desc !!}</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 col-sm-12">

@@ -270,8 +270,8 @@ $(window).on('load',function(){
 
 $( ".info" ).click(function() {
   //$( ".dish-info" ).show('slow');
-   $(this).parent().parent().parent().hide('slow');
-  $(this).parent().parent().parent().next().show('slow');
+   $(this).parent().hide('slow');
+  $(this).parent().next().show('slow');
   
 
 });
