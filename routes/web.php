@@ -26,6 +26,7 @@ use App\Http\Controllers\BlogUserController;
 use App\Http\Controllers\ProductUserController;
 use App\Http\Controllers\CategoryUserController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\RatingController;
 
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\LoginController;
@@ -47,6 +48,8 @@ Route::resource('/', HomeController::class);
 
 Route::resource('dashboard', DashboardController::class)->middleware('auth');
 Route::resource('setting', SettingController::class)->middleware('auth');
+
+Route::resource('rating', RatingController::class)->middleware('auth');
 
 Route::resource('resto', ProductController::class)->middleware('operator');
 Route::resource('category', CategoryController::class)->middleware('operator');

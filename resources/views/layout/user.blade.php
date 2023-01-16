@@ -31,6 +31,7 @@
 	<script src="https://kit.fontawesome.com/27a041baf1.js" crossorigin="anonymous"></script>
 </head>
 <body class="menu-layer">
+	@include('sweetalert::alert')
 
 	<!-- loader start-->
 	<div class="page-loader">
@@ -106,7 +107,7 @@
 					<div class="extras bag">
            <a href="javascript:void(0)" id="desktop-menu" class="menu-btn">
 
-						 <a href="#" class="button button-2">Login</a>
+						 <a href="{{ route('login') }}" class="button button-2">Login</a>
 					</div>
 				</div>
 

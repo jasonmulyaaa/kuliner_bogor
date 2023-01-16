@@ -2,6 +2,7 @@
 @section ('content')
 <?php
 use App\Models\Category;
+use App\Models\Rating;
 ?>
 <!-- hero-section -->
 <section class="hero-section gap" style="background-image: url(assets/img/background-1.png);">
@@ -95,15 +96,16 @@ use App\Models\Category;
 			<div class="cafa">
                 <h4><a href="{{ route('restoran.show', $product->slug) }}">{!! $product->title !!}</a></h4>
                 <div>
-                  @for ($o = 1; $o <= $product->rating; $o++)
-                  <i class="fa-solid fa-star"></i>
-                  @endfor
                   @php
-                      $maks = 5 - $product->rating;
+                      $rating = Rating::where('resto_id', $product->id)->sum('rating');
+                      $count = Rating::where('resto_id', $product->id)->count();
                   @endphp
-                  @for ($p = 1; $p <= $maks; $p++)
-                  <i class="fa-regular fa-star"></i>
-                  @endfor
+                  @if ($count == 0)
+                      0
+                  @else
+                  {{ $rating/$count }}
+                  @endif
+                  <i class="fa-solid fa-star"></i>
                 </div>
                 <div class="cafa-button">
                     @php
@@ -166,11 +168,6 @@ use App\Models\Category;
                   {{-- width: 70px; height: 70px; --}}
                   <div>
                     <h6>{!! $testimonial->nama !!}</h6>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
                   </div>
                 </div>
             </div>

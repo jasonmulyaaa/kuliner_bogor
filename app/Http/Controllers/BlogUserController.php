@@ -60,7 +60,7 @@ class BlogUserController extends Controller
         $blog = Blog::where('slug', $slug)->first();
         $blog->view += 1;
         $blog->update();
-        $konfigurasi = Konfigurasi::first();
+        $konfigurasi = Config::first();
         $pagetitle = PageTitle::first();
         $page = $blog->title;
 

@@ -9,6 +9,7 @@ use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\PageTitle;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class ProductUserController extends Controller
@@ -73,11 +74,12 @@ class ProductUserController extends Controller
         $product->view += 1;
         $product->update();
         $pagetitle = PageTitle::first();
+        $rating = Rating::where('resto_id', $product->id)->get();
         $testimonial = Testimonial::all();
         $menu = Menu::where('resto_id', $product->id)->get();
         $page = $product->title;
 
-        return view('user.restoran.show', compact('product', 'pagetitle', 'page', 'testimonial', 'konfigurasi', 'menu'));
+        return view('user.restoran.show', compact('product', 'pagetitle', 'page', 'testimonial', 'rating', 'konfigurasi', 'menu'));
     }
 
     /**
