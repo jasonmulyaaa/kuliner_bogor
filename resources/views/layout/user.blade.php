@@ -141,7 +141,11 @@
 							 </div>
 							 <div class="banner-wilmington">
 								 {{-- <img alt="logo" src="https://via.placeholder.com/50x50"> --}}
-								 <h6>{!! Auth::user()->username !!}</h6>
+								 <h6>
+									@if (Auth::user())
+									{!! Auth::user()->username !!}
+									@endif
+								</h6>
 							 </div>
 							 <div class="button-gap">
 								<a href="{{ route('dashboard.index') }}" class="button button-price" style="width: 100%; padding: 0;">Dashboard<i class="fa-solid fa-gauge"></i></a>
