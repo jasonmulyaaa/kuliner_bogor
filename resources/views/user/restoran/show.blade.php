@@ -284,7 +284,7 @@
 		</div>
 	</section>
 	<!-- subscribe-section -->
-	<section class="subscribe-section about gap" style="background-image: url(https://via.placeholder.com/1920x423);" >
+	<section class="subscribe-section about gap" >
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">

@@ -29,6 +29,24 @@
 
 	<!-- Font Awesome 5 -->
 	<script src="https://kit.fontawesome.com/27a041baf1.js" crossorigin="anonymous"></script>
+	<style>
+		.button-logout {
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #ff2424;
+    background-color: #ff2424;
+}
+.button-logout i {
+    padding-left: 20px;
+}
+.button-logout:hover {
+    background-color: transparent;
+    color: #ff2424;
+
+}
+	</style>
 </head>
 <body class="menu-layer">
 	@include('sweetalert::alert')
@@ -72,7 +90,7 @@
 								</g>
 							</svg> -->
 							<div class="image">
-  										<a href="/"><img src="{{ asset('storage/'. $konfigurasi->nav_img) }}" alt="{!! $konfigurasi->title !!}" class="img-responsive" title="{!! $konfigurasi->title !!}" style="width: 100%; height: 150px; object-fit: cover;"></a>
+  										<a href="/"><img src="{{ asset('storage/'. $konfigurasi->nav_img) }}" alt="{!! $konfigurasi->title !!}" class="img-responsive" title="{!! $konfigurasi->title !!}" style="width: 100%; height: 150px; object-fit: contain;"></a>
   									</div>
 						</a>
 						{{-- <div class="extras bag">
@@ -105,11 +123,41 @@
 				</div>
 				<div class="col-lg-3">
 					<div class="extras bag">
-           <a href="javascript:void(0)" id="desktop-menu" class="menu-btn">
-
-						 <a href="{{ route('login') }}" class="button button-2">Login</a>
+			@if (auth()->check())
+			{{-- <div class="wilmington location-restaurant"> --}}
+			<a href="javascript:void(0)" id="desktop-menu" class="menu-btn"><i class="fa-solid fa-user" style="padding: 20px; background-color: #F29F05; color: white;"></i></a>
+			{{-- </div> --}}
+			@else
+			<a href="{{ route('login') }}" class="button button-2">Login</a>
+			@endif
 					</div>
 				</div>
+				<div class="menu-wrap">
+					<div class="menu-inner ps ps--active-x ps--active-y">
+					  <span class="menu-cls-btn"><i class="cls-leftright"></i><i class="cls-rightleft"></i></span>
+					  <div class="checkout-order">
+							 <div class="title-checkout">
+								 <h2>Account</h2>
+							 </div>
+							 <div class="banner-wilmington">
+								 {{-- <img alt="logo" src="https://via.placeholder.com/50x50"> --}}
+								 <h6>{!! Auth::user()->username !!}</h6>
+							 </div>
+							 <div class="button-gap">
+								<a href="{{ route('dashboard.index') }}" class="button button-price" style="width: 100%; padding: 0;">Dashboard<i class="fa-solid fa-gauge"></i></a>
+							  </div>
+							 <div class="button-gap">
+								<a href="{{ route('setting.index') }}" class="button button-price" style="width: 100%; padding: 0;">Edit Profile<i class="fa-solid fa-user"></i></a>
+							</div>
+							<div class="button-gap">
+								<form action="{{ route('logout') }}" method="post">
+									@csrf
+								<button method="post" class="button button-logout" style="width: 100%; padding: 0;">Logout<i class="fa-solid fa-right-from-bracket"></i></button>
+								</form>
+							</div>
+						 </div>
+					  </div>
+				   </div>
 
          	 <div class="mobile-nav hmburger-menu" id="mobile-nav" style="display:block;">
 
@@ -185,7 +233,7 @@
 								</g>
 							</svg> -->
 									<div class="image">
-  										<a href="/"><img src="{{ asset('storage/'. $konfigurasi->footer_img) }}" alt="{!! $konfigurasi->title !!}" title="{!! $konfigurasi->title !!}" class="img-responsive" style="widtH: 50%; height: 150px; object-fit: cover;"></a>
+  										<a href="/"><img src="{{ asset('storage/'. $konfigurasi->footer_img) }}" alt="{!! $konfigurasi->title !!}" title="{!! $konfigurasi->title !!}" class="img-responsive" style="widtH: 50%; height: 150px; object-fit: contain;"></a>
   									</div>
 						</a>
 						<h2>{!! $konfigurasi->title !!}</h2>

@@ -2768,7 +2768,7 @@ ul.food-dishes li,.error-page form  input[type="text"],
 ul.footer-menu li a,ul.social-media li a i,.address span,
 .card-text-data,.card-text-data p,.card-text-data svg,.card-text-data h3,
 .services-card-style h4 a,.services-card-style,.services-card-style i:after,
-.services-card-style i,.button-price,.address,.address h6,.logodata.owl-carousel .owl-item img{
+.services-card-style i,.button-price,.address,.address h6,.logodata.owl-carousel .owl-item img, .button-logout{
     transition: .3s ease-in-out;
 }
 
