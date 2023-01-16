@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin
+class Operator
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || auth()->user()->role == 'operator' || auth()->user()->role == 'user' ) {
+        if (!auth()->check() || auth()->user()->role == 'user') {
             return abort(404);
         }
         return $next($request);
