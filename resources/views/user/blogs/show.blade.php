@@ -42,23 +42,8 @@
                             
 						<a href="#">{!! $tag !!}</a>
                         @endforeach
-									</div>
-		  			</div><br>
-	  			<div class="comment">
-	  				<h2>Leave your comment</h2>
-	  				<form class="comment-blog">
-	  					<textarea placeholder="Enter you comment"></textarea>
-	  					<div class="row">
-	  						<div class="col-lg-6">
-	  							<input type="text" name="name" placeholder="Your Name">
-	  						</div>
-	  						<div class="col-lg-6">
-	  							<input type="text" name="Email" placeholder="Email Address">
-	  						</div>
-	  					</div>
-	  					<button class="button-price">Publish a comment</button>
-	  				</form>
-	  			</div>
+					</div>
+		  		</div><br>
   			</div>
   		</div>
   	</div>

@@ -26,8 +26,11 @@ use App\Http\Controllers\BlogUserController;
 use App\Http\Controllers\ProductUserController;
 use App\Http\Controllers\CategoryUserController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\RatingController;
 
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistController;
 use Illuminate\Auth\Events\Logout;
 
 /*
@@ -46,10 +49,12 @@ Route::resource('/', HomeController::class);
 Route::resource('dashboard', DashboardController::class)->middleware('auth');
 Route::resource('setting', SettingController::class)->middleware('auth');
 
-Route::resource('resto', ProductController::class)->middleware('auth');
-Route::resource('category', CategoryController::class)->middleware('auth');
-Route::resource('blog', BlogController::class)->middleware('auth');
-Route::resource('menu', MenuController::class)->middleware('auth');
+Route::resource('rating', RatingController::class)->middleware('auth');
+
+Route::resource('resto', ProductController::class)->middleware('operator');
+Route::resource('category', CategoryController::class)->middleware('operator');
+Route::resource('blog', BlogController::class)->middleware('operator');
+Route::resource('menu', MenuController::class)->middleware('operator');
 
 Route::resource('counter', CounterController::class)->middleware('admin');
 Route::resource('banner', BannerController::class)->middleware('admin');
@@ -68,6 +73,11 @@ Route::resource('restoran', ProductUserController::class);
 Route::resource('categoryrestoran', CategoryUserController::class);
 Route::resource('contactus', ContactUsController::class);
 
+
+Route::resource('register', RegistController::class)->middleware('guest');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'auth'])->name('auth');
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel')->middleware('guest');
 Route::post('/panel', [PanelController::class, 'authentication'])->name('authentication');

@@ -10,6 +10,7 @@ use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Counter;
 use App\Models\PageTitle;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
@@ -30,6 +31,16 @@ class HomePageController extends Controller
         $product = Product::orderBy('view', 'DESC')->get();
         $pagetitle = PageTitle::first();
         $page = $konfigurasi->title;
+
+        $ip_now = $_SERVER['REMOTE_ADDR'];
+
+        $validated = [
+            'ip_address' => $ip_now,
+            'visit_date' => date('Y-m-d'),
+        ];
+
+        Visitor::create($validated);
+
         return view('welcome', compact('banner', 'alur', 'testimonial', 'partner', 'pagetitle', 'product', 'page', 'konfigurasi', 'counter'));
     }
 

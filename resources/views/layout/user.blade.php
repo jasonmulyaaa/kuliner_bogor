@@ -49,6 +49,7 @@
 	</style>
 </head>
 <body class="menu-layer">
+	@include('sweetalert::alert')
 
 	<!-- loader start-->
 	<div class="page-loader">
@@ -127,7 +128,7 @@
 			<a href="javascript:void(0)" id="desktop-menu" class="menu-btn"><i class="fa-solid fa-user" style="padding: 20px; background-color: #F29F05; color: white;"></i></a>
 			{{-- </div> --}}
 			@else
-			<a href="#" class="button button-2">Login</a>
+			<a href="{{ route('login') }}" class="button button-2">Login</a>
 			@endif
 					</div>
 				</div>

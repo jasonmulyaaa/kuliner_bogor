@@ -1,4 +1,8 @@
 @extends ('layout.user')
+@php
+	use App\Models\Rating;
+	use App\Models\User;
+@endphp
 @section ('content')
 
 	<!-- hero-section -->
@@ -171,22 +175,37 @@
 				</div>
 				<div class="col-xl-8 col-lg-12">
 					<div class="comment-data comment-slide owl-carousel owl-theme">
-						@foreach ($testimonial as $testimonial)
+						@foreach ($rating as $testimonial)
 							
 						<div class="author-text item">
 							
-							{!! $testimonial->deskripsi !!}
+							<p>{!! $testimonial->desc !!}</p>
 							<div class="thomas">
-								<img alt="girl" src="{{ asset('storage/'. $testimonial->gambar) }}" style="width: 70px; height: 70px;">
+								<img alt="girl" src="{{ asset('assets/images/icon.png') }}" style="width: 70px; height: 70px;">
 								{{-- width: 70px; height: 70px; --}}
 
 								<div>
-									<h6>{!! $testimonial->nama !!}</h6>
+									@php
+										$user = User::where('id', $testimonial->user_id)->first();
+									@endphp
+									<h6>{!! $user->username !!}</h6>
 									<i class="fa-solid fa-star"></i>
+									@if ($testimonial->rating > 1)
 									<i class="fa-solid fa-star"></i>
+										
+									@endif
+									@if ($testimonial->rating > 2)
 									<i class="fa-solid fa-star"></i>
+										
+									@endif
+									@if ($testimonial->rating > 3)
 									<i class="fa-solid fa-star"></i>
+										
+									@endif
+									@if ($testimonial->rating > 4)
 									<i class="fa-solid fa-star"></i>
+										
+									@endif
 								</div>
 							</div>
 						</div>
@@ -194,7 +213,73 @@
 
 					</div>
 				</div>
+			</div>
+			<div class="row justify-content-center mt-5 pt-5">
+				<div class="col-8">
+					<div class="comment">
+						<h2>Leave your comment</h2>
+						@if (Auth::user())
+							@php
+								$rating = Rating::where('resto_id', $product->id)->where('user_id', Auth::user()->id)->first();
+							@endphp
+						@endif
+						@if (!$rating)
+							<form class="comment-blog" action="{{ route('rating.store') }}" method="POST" enctype="multipart/form-data">
+								@csrf
+								<input type="hidden" name="resto_id" value="{{ $product->id }}">
+								@if (Auth::user())
+									<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+								@endif
+								<textarea placeholder="Enter you comment" name="desc"></textarea>
+								<div class="row">
+									<div class="col-lg-12">
+										<label for="rating">Rating /5</label>
+										<input type="range" style="width: 100%;" step="1" min="1" max="5" name="rating" id="rating" value="1">
+									</div>
+								</div>
+								<button class="button-price" type="submit">Publish a comment</button>
+							</form>
 
+						@elseif ($rating && Auth::user())
+							<form class="comment-blog" action="{{ route('rating.update', $rating->id) }}" method="POST" enctype="multipart/form-data">
+								@csrf
+								@method('PUT')
+
+								<input type="hidden" name="resto_id" value="{{ $product->id }}">
+								@if (Auth::user())
+									<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+								@endif
+								<textarea placeholder="Enter you comment" name="desc">{{ $rating->desc }}</textarea>
+								<div class="row">
+									<div class="col-lg-12">
+										<label for="rating">Rating /5</label>
+										<input type="range" style="width: 100%;" step="1" min="1" max="5" name="rating" id="rating" value="{{ $rating->rating }}">
+									</div>
+								</div>
+								<button class="button-price" type="submit">Update a comment</button>
+							</form>
+
+						@else
+
+						<form class="comment-blog" action="{{ route('rating.store') }}" method="POST" enctype="multipart/form-data">
+							@csrf
+							<input type="hidden" name="resto_id" value="{{ $product->id }}">
+							@if (Auth::user())
+								<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+							@endif
+							<textarea placeholder="Enter you comment" name="desc"></textarea>
+							<div class="row">
+								<div class="col-lg-12">
+									<label for="rating">Rating /5</label>
+									<input type="range" style="width: 100%;" step="1" min="1" max="5" name="rating" id="rating" value="1">
+								</div>
+							</div>
+							<button class="button-price" type="submit">Publish a comment</button>
+						</form>
+						
+						@endif
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
