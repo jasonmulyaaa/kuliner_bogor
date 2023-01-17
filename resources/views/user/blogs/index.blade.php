@@ -95,7 +95,8 @@ use App\Models\User;
             <div class="col-lg-5 offset-lg-1" data-aos="flip-up"  data-aos-delay="300" data-aos-duration="400">
               <div class="get-the-menu">
                 <h2>{!! $pagetitle->judul_subscribe !!}</h2>
-                <form>
+                <form action="{{ route('emails.store') }}" method="POST">
+					@csrf
                   <i class="fa-regular fa-bell"></i>
                   <input type="text" name="email" placeholder="Enter email address">
                   <button class="button button-2">Subscribe</button>

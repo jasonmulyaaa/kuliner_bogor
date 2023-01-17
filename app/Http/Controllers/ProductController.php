@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Emails;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SubMail;
 
 use Illuminate\Http\Request;
 
@@ -49,9 +53,23 @@ class ProductController extends Controller
 
         $validated['image'] = $image;
 
+        $validated['name'] =  $validated['title'];
+
         $validated['slug'] = Str::slug($request->title);
 
         $validated['view'] = 0;
+
+        $data = [
+            'title' => $validated['title'],
+            'desc' => $validated['desc'],
+            'alamat' => $validated['alamat'],
+        ];
+
+        $email = Emails::all();
+
+        foreach ($email as $e) {
+            Mail::to($e->email)->send(new SubMail($data));   
+        }
 
         Product::create($validated);
 

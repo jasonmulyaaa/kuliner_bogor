@@ -290,7 +290,8 @@
 				<div class="col-lg-12">
 					<div class="get-the-menu">
 						<h2 data-aos="fade-up"  data-aos-delay="200" data-aos-duration="300">Get the menu of your favorite restaurants every day</h2>
-						<form data-aos="fade-up"  data-aos-delay="300" data-aos-duration="400">
+						<form action="{{ route('emails.store') }}" method="POST">
+							@csrf
 							<i class="fa-regular fa-bell"></i>
 							<input type="text" name="email" placeholder="Enter email address">
 							<button class="button button-2">Subscribe</button>
