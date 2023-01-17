@@ -188,7 +188,11 @@
 									@php
 										$user = User::where('id', $testimonial->user_id)->first();
 									@endphp
+									{{-- @if (Auth::user()) --}}
 									<h6>{!! $user->username !!}</h6>
+									{{-- @else --}}
+
+									{{-- @endif --}}
 									<i class="fa-solid fa-star"></i>
 									@if ($testimonial->rating > 1)
 									<i class="fa-solid fa-star"></i>

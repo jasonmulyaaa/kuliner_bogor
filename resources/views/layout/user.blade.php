@@ -47,6 +47,9 @@
 
 }
 	</style>
+<?php
+use App\Models\Contact;
+?>
 </head>
 <body class="menu-layer">
 	@include('sweetalert::alert')
@@ -265,19 +268,31 @@
 						<a href="mailto:{!! $pagetitle->email_contact !!}"><i class="fa-solid fa-envelope"></i>{!! $pagetitle->email_contact !!}</a>
 						<a href="callto:{!! $pagetitle->telp_contact !!}"><i class="fa-solid fa-phone"></i>{!! $pagetitle->telp_contact !!}</a>
 					</div>
+					@php
+						$contact = Contact::first();
+					@endphp
 					<ul class="social-media">
-							<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+						@if (empty($contact->wa))
+						@else
+						<li><a href="https://wa.me/{!! $contact->wa !!}" target="__blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+						@endif
+						@if(empty($contact->twit))
+						@else
+						<li><a href="{!! $contact->twit !!}" target="__blank"><i class="fa-brands fa-twitter"></i></a></li>
+						@endif
+						@if (empty($contact->fb))
+						@else
+						<li><a href="{!! $contact->fb !!}" target="__blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+						@endif
+						@if (empty($contact->ig))
+						@else
+						<li><a href="{!! $contact->ig !!}" target="__blank"><i class="fa-brands fa-instagram"></i></a></li>
+						@endif
 						</ul>
 				</div>
 			</div>
-			<div class="footer-two gap no-bottom">
-				<p>Copyright © 2022. Quickeat. All rights reserved.</p>
-				<div class="privacy">
-					<a href="#">Privacy Policy</a>
-					<a href="#">Terms & Services</a>
-				</div>
+			<div class="footer-two gap no-bottom justify-content-center">
+				<p>Copyright © 2022. SMK Wikrama. All rights reserved.</p>
 			</div>
 		</div>
 	</footer>

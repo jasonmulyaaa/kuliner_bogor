@@ -21,9 +21,6 @@ use App\Models\User;
 						<div class="restaurants-girl-img blog food-photo-section">
 							<img alt="{!! $pagetitle->judul_blog !!}" src="{{ asset('storage/'. $pagetitle->gambar_blog) }}" title="{!! $pagetitle->judul_blog !!}">
                             {{-- width: 546px; height: 516px; --}}
-							<a href="#" class="one"><i class="fa-brands fa-facebook-f"></i></a>
-							<a href="#" class="two"><i class="fa-brands fa-instagram"></i></a>
-							<a href="#" class="three"><i class="fa-brands fa-twitter"></i></a>
 						</div>
 					</div>
 				</div>
