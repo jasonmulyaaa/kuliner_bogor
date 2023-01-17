@@ -53,6 +53,9 @@ use App\Models\Contact;
 </head>
 <body class="menu-layer">
 	@include('sweetalert::alert')
+	<?php
+		use App\Models\Contact;
+	?>
 
 	<!-- loader start-->
 	<div class="page-loader">

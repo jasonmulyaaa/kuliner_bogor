@@ -54,17 +54,18 @@
 						<div class="join-courier content">
 							<h3>Get in touch with us</h3>
 							<p>Magna sit amet purus gravida quis blandit turpis cursus. Venenatis tellus in metus vulputate eu scelerisque felis.</p>
-							<form class="blog-form">
+							<form class="blog-form" action="email" method="GET">
+								@csrf
 								<div class="name-form">
 									<i class="fa-regular fa-user"></i>
-									<input type="text" name="name" placeholder="Enter your name">
+									<input type="text" name="name" placeholder="Enter your name" required>
 								</div>
 								<div class="name-form">
 									<i class="fa-regular fa-envelope"></i>
-									<input type="text" name="email" placeholder="Enter your email">
+									<input type="text" name="email" placeholder="Enter your email" required>
 								</div>
-								<textarea placeholder="Enter your message"></textarea>
-								<button class="button-price">Submit Application</button>
+								<textarea placeholder="Enter your message" name="msg" required></textarea>
+								<button class="button-price" type="submit">Submit Application</button>
 							</form>
 
 						</div>
@@ -89,10 +90,11 @@
         <div class="col-lg-5 offset-lg-1" data-aos="flip-up"  data-aos-delay="300" data-aos-duration="400">
           <div class="get-the-menu">
             <h2>{!! $pagetitle->judul_subscribe !!}</h2>
-            <form>
+            <form action="{{ route('emails.store') }}" method="POST">
+				@csrf
               <i class="fa-regular fa-bell"></i>
               <input type="text" name="email" placeholder="Enter email address">
-              <button class="button button-2">Subscribe</button>
+              <button class="button button-2" type="submit">Subscribe</button>
             </form>
           </div>
         </div>

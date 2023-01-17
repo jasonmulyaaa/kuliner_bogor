@@ -28,6 +28,10 @@ use App\Http\Controllers\CategoryUserController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\RatingController;
 
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\EmailsController;
+use App\Http\Controllers\SubscribeController;
+
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistController;
@@ -73,6 +77,9 @@ Route::resource('restoran', ProductUserController::class);
 Route::resource('categoryrestoran', CategoryUserController::class);
 Route::resource('contactus', ContactUsController::class);
 
+Route::get('/email', [EmailController::class, 'index']);
+Route::get('/subcribe', [SubController::class, 'index']);
+Route::resource('/emails', EmailsController::class);
 
 Route::resource('register', RegistController::class)->middleware('guest');
 

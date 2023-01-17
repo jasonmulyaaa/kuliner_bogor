@@ -59,8 +59,7 @@ use App\Models\Rating;
           <div class="col-xl-6 col-lg-12">
             <div class="choose-lunches">
 
-              <h2>{!! $topproduct->title !!}</h2>
-              <h3>Rp. {!! $topproduct->harga !!}</h3>
+              <h3>{!! $topproduct->title !!}</h3><br>
               <a href="#" class="button button-2 non">Order Now<i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </div>
@@ -123,7 +122,8 @@ use App\Models\Rating;
         <div class="col-lg-5 offset-lg-1" data-aos="flip-up"  data-aos-delay="300" data-aos-duration="400">
           <div class="get-the-menu">
             <h2>{!! $pagetitle->judul_subscribe !!}</h2>
-            <form>
+            <form action="{{ route('emails.store') }}" method="POST">
+              @csrf
               <i class="fa-regular fa-bell"></i>
               <input type="text" name="email" placeholder="Enter email address">
               <button class="button button-2">Subscribe</button>
