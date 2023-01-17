@@ -118,6 +118,8 @@ class ProductController extends Controller
 
         $validated['slug'] = Str::slug($request->title);
 
+        $validated['name'] =  $validated['title'];
+
         $product = Product::find($id);
 
         $product->update($validated);
